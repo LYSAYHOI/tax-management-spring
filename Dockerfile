@@ -11,4 +11,4 @@ COPY tax-management-spring.jar /app/tax-management-spring.jar
 EXPOSE 8080
 
 # Specify the command to run your Spring Boot application
-CMD ["java", "-jar", "your-app.jar"]
+CMD ["java", "-jar", "tax-management-spring.jar"]
