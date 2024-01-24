@@ -5,7 +5,7 @@ import org.springframework.core.io.ByteArrayResource;
 import org.springframework.http.ResponseEntity;
 
 public interface TaxQueryService {
-    TaxPurchaseResponse purchaseApi(String search, String sort, int size);
+    TaxPurchaseResponse purchaseApi(String search, String sort, int size, String authorization);
 
-    ResponseEntity<ByteArrayResource> exportApi(String nbmst, String khhdon, String shdon, String khmshdon);
+    ResponseEntity<ByteArrayResource> exportApi(String nbmst, String khhdon, String shdon, String khmshdon, String authorization);
 }
