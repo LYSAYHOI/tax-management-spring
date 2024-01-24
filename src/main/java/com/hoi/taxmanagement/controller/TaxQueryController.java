@@ -23,7 +23,7 @@ public class TaxQueryController {
         return taxQueryService.purchaseApi(search, sort, size);
     }
 
-    @GetMapping("export")
+    @GetMapping("/export")
     public ResponseEntity<ByteArrayResource> downloadFile(String nbmst, String khhdon, String shdon, String khmshdon) {
         return taxQueryService.exportApi(nbmst, khhdon, shdon, khmshdon);
     }
