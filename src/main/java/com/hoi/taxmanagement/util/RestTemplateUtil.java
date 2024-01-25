@@ -1,5 +1,6 @@
 package com.hoi.taxmanagement.util;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.http.*;
 import org.springframework.stereotype.Component;
@@ -9,6 +10,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 @Component
+@Slf4j
 public class RestTemplateUtil {
 
     private final RestTemplate restTemplate;
@@ -29,13 +31,13 @@ public class RestTemplateUtil {
 
     public <T> ResponseEntity<T> get(String url, Map<String, String> param, HttpHeaders headers, Class<T> responseType) {
         String uri = url + buildQueryString(param);
-        System.out.println(uri);
+        log.info("Request url: {}", uri);
         return restTemplate.exchange(uri, HttpMethod.GET, new HttpEntity<>(headers), responseType);
     }
 
     public ResponseEntity<ByteArrayResource> getFile(String url, Map<String, String> param, HttpHeaders headers) {
         String uri = url + buildQueryString(param);
-        System.out.println(uri);
+        log.info("Request url: {}", uri);
         return restTemplate.execute(uri, HttpMethod.GET, request -> request.getHeaders().addAll(headers), response -> {
             ByteArrayResource resource = new ByteArrayResource(response.getBody().readAllBytes());
             HttpHeaders responseHeaders = response.getHeaders();
