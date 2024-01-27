@@ -5,10 +5,13 @@ FROM openjdk:17.0.2-jdk-oracle
 WORKDIR /app
 
 # Copy the executable JAR or WAR file into the container
-COPY target/tax-management-spring.jar /app/tax-management-spring.jar
+COPY target/tax-management-spring.jar tax-management-spring.jar
+
+# Copy cacert
+COPY cacert/cacerts cert/cacerts
 
 # Expose the port that the Spring Boot application will run on
 EXPOSE 8080
 
 # Specify the command to run your Spring Boot application
-CMD ["java", "-jar", "tax-management-spring.jar"]
+CMD ["java", "-jar", "tax-management-spring.jar", "-Djavax.net.ssl.trustStore=cert/cacerts", "-Djavax.net.ssl.trustStorePassword=changeit"]

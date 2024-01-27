@@ -4,6 +4,7 @@ import com.hoi.taxmanagement.dto.TaxPurchaseResponse;
 import com.hoi.taxmanagement.service.TaxQueryService;
 import com.hoi.taxmanagement.util.RestTemplateUtil;
 import lombok.RequiredArgsConstructor;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
@@ -22,11 +23,14 @@ public class TaxQueryServiceImpl implements TaxQueryService {
     private final RestTemplateUtil restTemplateUtil;
 
     @Override
-    public TaxPurchaseResponse purchaseApi(String search, String sort, int size, String authorization) {
+    public TaxPurchaseResponse purchaseApi(String search, String sort, int size, String state, String authorization) {
         Map<String, String> param = new HashMap<>();
         param.put("search", search);
         param.put("sort", sort);
         param.put("size", String.valueOf(size));
+        if (StringUtils.isNotBlank(state)) {
+            param.put("state", state);
+        }
         HttpHeaders headers = new HttpHeaders();
         headers.add(HttpHeaders.AUTHORIZATION, authorization);
         return restTemplateUtil.get(TAX_URL + TAX_PURCHASE, param, headers, TaxPurchaseResponse.class).getBody();

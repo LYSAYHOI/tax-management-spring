@@ -44,7 +44,4 @@ public class RestTemplateUtil {
             return new ResponseEntity<>(resource, responseHeaders, response.getStatusCode());
         });
     }
-
-
-
 }

@@ -18,9 +18,9 @@ public class TaxQueryController {
     private final TaxQueryService taxQueryService;
 
     @GetMapping("/purchase")
-    public TaxPurchaseResponse purchaseApi(String sort, int size, String search,
+    public TaxPurchaseResponse purchaseApi(String sort, int size, String search, String state,
                                            @RequestHeader(HttpHeaders.AUTHORIZATION) String authorization) {
-        return taxQueryService.purchaseApi(search, sort, size, authorization);
+        return taxQueryService.purchaseApi(search, sort, size, state, authorization);
     }
 
     @GetMapping("/export")
