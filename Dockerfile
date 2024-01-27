@@ -14,4 +14,4 @@ COPY cacert/cacerts cert/cacerts
 EXPOSE 8080
 
 # Specify the command to run your Spring Boot application
-CMD ["java", "-jar", "tax-management-spring.jar", "-Djavax.net.ssl.trustStore=cert/cacerts", "-Djavax.net.ssl.trustStorePassword=changeit"]
+CMD ["java","-Djavax.net.ssl.trustStore=cert/cacerts", "-Djavax.net.ssl.trustStore=cert/cacerts", "-Djavax.net.ssl.trustStorePassword=changeit", "-jar", "tax-management-spring.jar"]
